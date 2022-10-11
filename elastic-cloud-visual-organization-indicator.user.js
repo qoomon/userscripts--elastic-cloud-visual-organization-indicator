@@ -30,9 +30,9 @@ function getDisplayColor(organization) {
 window.addEventListener('changestate', async () => {
     'use strict';
 
-    const headerElement = await untilDefined(() => document.querySelector('header'))
-    if(headerElement._accountIndicator) return;
-    headerElement._accountIndicator = true;
+    const pageHeaderElement = await untilDefined(() => document.querySelector('[data-test-id="page-header"]'))
+    if(pageHeaderElement._accountIndicator) return;
+    pageHeaderElement._accountIndicator = true;
 
     const organization = await getOrganizationInfo()
 
@@ -48,17 +48,18 @@ window.addEventListener('changestate', async () => {
       height: 8px;
       background: repeating-linear-gradient(-45deg, ${displayColor}, ${displayColor} 12px, transparent 0px, transparent 24px);
     `;
-    const topHeaderElement = await untilDefined(() => document.querySelector('header > div.euiHeader'))
-    topHeaderElement.style.flexFlow = 'wrap';
-    topHeaderElement.style.height = '54px';
-    topHeaderElement.style.paddingBottom = '6px';
-    topHeaderElement.insertAdjacentElement('beforeEnd', indicatorBarElement)
+    pageHeaderElement.style.flexFlow = 'wrap';
+    pageHeaderElement.style.height = '54px';
+    pageHeaderElement.style.paddingBottom = '6px';
+    pageHeaderElement.insertAdjacentElement('beforeEnd', indicatorBarElement)
 
     // insert indicator label
-    const organizationLabelElement = document.createElement('div')
+    // /account
+    const organizationLabelElement = document.createElement('a')
+    organizationLabelElement.href = '/account'
     organizationLabelElement.innerText = getDisplayName(organization)
     organizationLabelElement.style.cssText = `
-        color: whitewhitesmoke;
+        color: whitesmoke;
         font-size: 12px;
         line-height: 24px;
         white-space: nowrap;
@@ -69,7 +70,7 @@ window.addEventListener('changestate', async () => {
         text-decoration: none;
     `;
 
-    const userMenuButtonElement = await untilDefined(() => topHeaderElement.querySelector(':scope .euiHeaderSection:last-child .euiHeaderSectionItem:last-child'))
+    const userMenuButtonElement = await untilDefined(() => pageHeaderElement.querySelector(':scope .euiHeaderSection--right .euiHeaderSectionItem:last-child'))
     userMenuButtonElement.insertAdjacentElement('beforeBegin', organizationLabelElement)
 });
 
