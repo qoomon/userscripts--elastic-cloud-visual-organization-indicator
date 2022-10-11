@@ -41,11 +41,18 @@ window.addEventListener('changestate', async () => {
     // insert indicator bar
     const indicatorBarElement = document.createElement('div')
     indicatorBarElement.style.cssText = `
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100vw;
       height: 8px;
       background: repeating-linear-gradient(-45deg, ${displayColor}, ${displayColor} 12px, transparent 0px, transparent 24px);
     `;
     const topHeaderElement = await untilDefined(() => document.querySelector('header > div.euiHeader'))
-    topHeaderElement.insertAdjacentElement('afterend', indicatorBarElement)
+    topHeaderElement.style.flexFlow = 'wrap';
+    topHeaderElement.style.height = '54px';
+    topHeaderElement.style.paddingBottom = '6px';
+    topHeaderElement.insertAdjacentElement('beforeEnd', indicatorBarElement)
 
     // insert indicator label
     const organizationLabelElement = document.createElement('div')
@@ -63,7 +70,7 @@ window.addEventListener('changestate', async () => {
     `;
 
     const userMenuButtonElement = await untilDefined(() => topHeaderElement.querySelector(':scope .euiHeaderSection:last-child .euiHeaderSectionItem:last-child'))
-    userMenuButtonElement.insertAdjacentElement('beforebegin', organizationLabelElement)
+    userMenuButtonElement.insertAdjacentElement('beforeBegin', organizationLabelElement)
 });
 
 // --- Utils ---------------------------------------------------------------
