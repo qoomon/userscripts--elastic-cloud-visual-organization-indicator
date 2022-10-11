@@ -51,9 +51,8 @@ window.addEventListener('changestate', async () => {
     const organizationLabelElement = document.createElement('div')
     organizationLabelElement.innerText = getDisplayName(organization)
     organizationLabelElement.style.cssText = `
-        color: #000 !important;
+        color: whitewhitesmoke;
         font-size: 12px;
-        font-weight: 500;
         line-height: 24px;
         white-space: nowrap;
         background-color: ${displayColor};
