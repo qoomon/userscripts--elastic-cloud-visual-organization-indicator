@@ -3,5 +3,5 @@
 ![screenshot](screenshot.png)
 
 ## Install
-* [Install Tampermonkey](https://www.tampermonkey.net/) or any other userscript manager
-* [Install userscript](https://github.com/qoomon/userscript-elastic-cloud-visual-organization-indicator/raw/main/elastic-cloud-visual-organization-indicator.user.js)
+* [Install Violentmonkey](https://violentmonkey.github.io/get-it/) or any other userscript manager
+* [Install this userscript](/elastic-cloud-visual-organization-indicator.user.js?raw=1)
